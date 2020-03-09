@@ -1,4 +1,4 @@
-package api.soapservice.v1.model;
+package techbasics.api.soapservice.v1.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

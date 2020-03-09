@@ -1,7 +1,7 @@
-package api.soapservice.v1.service;
+package techbasics.api.soapservice.v1.service;
 
-import api.soapservice.v1.model.Request1;
-import api.soapservice.v1.model.Response1;
+import techbasics.api.soapservice.v1.model.Request1;
+import techbasics.api.soapservice.v1.model.Response1;
 
 public interface SoapService {
 
