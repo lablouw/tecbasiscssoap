@@ -1,4 +1,4 @@
-package techbasics.domain.model.soap;
+package techbasics.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
