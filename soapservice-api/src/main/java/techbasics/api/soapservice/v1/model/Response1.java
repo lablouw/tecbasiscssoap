@@ -2,10 +2,13 @@ package techbasics.api.soapservice.v1.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import techbasics.api.soapservice.v1.service.SoapService;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
@@ -13,36 +16,20 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @ToString
+@Data
 
 //For more annotations see https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/example_schemagen_basic.html
-@XmlType(namespace = SoapService.NAMESPACE_URI)
+@XmlType(namespace = SoapService.NAMESPACE_URI_V1)
 public class Response1 {
 
+	@XmlElement(name = "responseString1")
 	private String responseString1;
+
+	@XmlElement(name = "responseInt1")
 	private int responseInt1;
+
+	@XmlElementWrapper(name = "response1Strings", nillable = true, required = false)
+	@XmlElement(name = "response1String")
 	private List<String> response1Strings;
 
-	public String getResponseString1() {
-		return responseString1;
-	}
-
-	public void setResponseString1(String responseString1) {
-		this.responseString1 = responseString1;
-	}
-
-	public int getResponseInt1() {
-		return responseInt1;
-	}
-
-	public void setResponseInt1(int responseInt1) {
-		this.responseInt1 = responseInt1;
-	}
-
-	public List<String> getResponse1Strings() {
-		return response1Strings;
-	}
-
-	public void setResponse1Strings(List<String> response1Strings) {
-		this.response1Strings = response1Strings;
-	}
 }

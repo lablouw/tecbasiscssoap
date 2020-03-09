@@ -37,7 +37,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("SoapServicePort");
         wsdl11Definition.setLocationUri("/soapService");
-        wsdl11Definition.setTargetNamespace(SoapService.NAMESPACE_URI);
+        wsdl11Definition.setTargetNamespace(SoapService.NAMESPACE_URI_V1);
         wsdl11Definition.setSchema(soapServiceSchema);
         return wsdl11Definition;
     }
