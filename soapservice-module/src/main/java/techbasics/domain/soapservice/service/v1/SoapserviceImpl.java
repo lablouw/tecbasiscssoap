@@ -10,9 +10,8 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 @Endpoint
 public class SoapserviceImpl implements SoapService {
 
-    private static final String NAMESPACE_URI = "http://localhost:8080/soapService/v1/";
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "processSoapRequest1")
+    @PayloadRoot(namespace = SoapService.NAMESPACE_URI_V1, localPart = "processSoapRequest1")
     public Response1 processSoapRequest1(@RequestPayload Request1 request1) {
 
         return new Response1();

@@ -8,8 +8,8 @@ import org.springframework.util.StringUtils;
 
 @Aspect
 @Slf4j
-public class RestBoundaryLoggerAspect {
-    @Around("execution(public * techbasics.domain.techbasics.*.*(..))")
+public class SoapBoundaryLoggerAspect {
+    @Around("execution(public * techbasics.domain.soapservice.service.*.*(..))")
     public Object logConvert(ProceedingJoinPoint pjp) throws Throwable {
         String argsPattern = "";
         for (int i = 0; i < pjp.getArgs().length; i++) {
