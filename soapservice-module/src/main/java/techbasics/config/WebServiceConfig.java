@@ -42,7 +42,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema soapServiceSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("../generated-resources/schemagen/schema1.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("schema1.xsd"));
     }
 
 }

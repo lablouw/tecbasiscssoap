@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,5 +15,6 @@ public class Request1 {
 
 	private String requestString1;
 	private int requestInt1;
+	private List<String> request1Strings;
 
 }
