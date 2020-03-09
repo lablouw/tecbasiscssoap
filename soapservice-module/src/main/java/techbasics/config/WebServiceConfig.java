@@ -28,15 +28,15 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/ws/*");
+        return new ServletRegistrationBean(servlet, "/soapService/*");
     }
 
-    //WSDL localtion: http://localhost:8080/ws/soapService.wsdl
-    @Bean(name = "soapService")
+    //WSDL: http://localhost:8080/soapService/v1.wsdl
+    @Bean(name = "v1")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema soapServiceSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("SoapServicePort");
-        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setLocationUri("/soapService");
         wsdl11Definition.setTargetNamespace(SoapService.NAMESPACE_URI);
         wsdl11Definition.setSchema(soapServiceSchema);
         return wsdl11Definition;
