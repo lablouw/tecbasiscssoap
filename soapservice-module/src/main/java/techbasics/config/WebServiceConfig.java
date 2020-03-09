@@ -12,15 +12,15 @@ import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 import techbasics.api.soapservice.v1.service.SoapService;
-import techbasics.aspect.RestBoundaryLoggerAspect;
+import techbasics.aspect.SoapBoundaryLoggerAspect;
 
 @EnableWs
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
-    public RestBoundaryLoggerAspect restBoundaryLoggerAspect() {
-        return new RestBoundaryLoggerAspect();
+    public SoapBoundaryLoggerAspect soapBoundaryLoggerAspect() {
+        return new SoapBoundaryLoggerAspect();
     }
 
     @Bean
