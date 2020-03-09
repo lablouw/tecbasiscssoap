@@ -193,7 +193,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <sources>
-                                <source>../soapservice-api/src/main/java</source>
+                                <source>../soapservice-api/src/main/java/techbasics/api/soapservice/v1</source>
                             </sources>
                         </configuration>
                     </execution>
