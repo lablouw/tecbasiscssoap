@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 @ToString
 
+//For more annotations see https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/example_schemagen_basic.html
 @XmlType(namespace = SoapService.NAMESPACE_URI)
 public class Request1 {
 

@@ -11,6 +11,7 @@ import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
+import techbasics.api.soapservice.v1.service.SoapService;
 import techbasics.aspect.RestBoundaryLoggerAspect;
 
 @EnableWs
@@ -30,13 +31,14 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
+    //WSDL localtion: http://localhost:8080/ws/soapService.wsdl
     @Bean(name = "soapService")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema soapSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema soapServiceSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("SoapServicePort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://localhost:8080/soapService/v1/");
-        wsdl11Definition.setSchema(soapSchema);
+        wsdl11Definition.setTargetNamespace(SoapService.NAMESPACE_URI);
+        wsdl11Definition.setSchema(soapServiceSchema);
         return wsdl11Definition;
     }
 
