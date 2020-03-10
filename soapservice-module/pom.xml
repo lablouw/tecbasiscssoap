@@ -179,7 +179,7 @@
             </plugin>
 
             <!-- We want a code first, not a contract (xsd) first approach-->
-            <!-- This will generate the xsd schema from the java code in the soapservice-api project for use by spring-->
+            <!-- This here will generate the xsd schemas from the java code in the soapservice-api project for use by spring-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
@@ -192,8 +192,14 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
+                            <clearOutputDir>false</clearOutputDir>
+                            <!-- NOTE 1: An xsd file will be generated per namespace found.-->
+                            <!-- Sources should therefore be in different namespaces with no code shared between them-->
+                            <!-- NOTE 2: xsd files will be generated in reverse order as the sources specified here-->
+                            <!-- so the bottom source -> schema1.xsd, second from bottom -> schema2.xsd, etc-->
                             <sources>
-                                <source>../soapservice-api/src/main/java/techbasics/api/soapservice/v1</source>
+<!--                                <source>../soapservice-api/src/main/java/techbasics/api/soapservice/v2</source>--><!--schema2.xsd-->
+                                <source>../soapservice-api/src/main/java/techbasics/api/soapservice/v1</source><!--schema1.xsd-->
                             </sources>
                         </configuration>
                     </execution>
@@ -203,7 +209,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Now we add the xsd to the classpath -->
+            <!-- Now we add the xsd files to the classpath -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -211,6 +217,7 @@
                 <configuration>
                     <additionalClasspathElements>
                         <additionalClasspathElement>target/generated-resources/schemagen/schema1.xsd</additionalClasspathElement>
+<!--                        <additionalClasspathElement>target/generated-resources/schemagen/schema2.xsd</additionalClasspathElement>-->
                     </additionalClasspathElements>
                 </configuration>
             </plugin>
