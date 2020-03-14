@@ -2,3 +2,5 @@ soapservice-api/target
 soapservice-module/target
 /.idea
 techbasicssoap/.iml
+
+soapservice-api/soapservice-api\.iml
