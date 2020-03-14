@@ -97,12 +97,15 @@
             <scope>test</scope>
         </dependency>
 
-
-
-        <!-- Our own work -->
+        <!-- Our own work-->
         <dependency>
             <groupId>lloyd</groupId>
             <artifactId>soapservice-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>lloyd</groupId>
+            <artifactId>techbasics-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -118,6 +121,7 @@
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
+                        <!-- Make Lombok and Mapstruct work together-->
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.mapstruct</groupId>
@@ -136,7 +140,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>jaxb2-maven-plugin</artifactId>
-                    <version>2.5.0</version>
+                    <version>${jaxb2.maven.plugin.version}</version>
                 </plugin>
 
             </plugins>
@@ -150,7 +154,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.9</version>
+                <version>${dockerfile.maven.plugin.version}</version>
                 <configuration>
                     <repository>${docker.image.prefix}/${project.artifactId}</repository>
                 </configuration>
@@ -178,12 +182,11 @@
                 </executions>
             </plugin>
 
-            <!-- We want a code first, not a contract (xsd) first approach-->
-            <!-- This here will generate the xsd schemas from the java code in the soapservice-api project for use by spring-->
+            <!-- We want a code first, not a contract (xsd) first approach -->
+            <!-- Here we generate the xsd schemas from the java code in the soapservice-api project for use by spring-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.5.0</version>
                 <executions>
                     <execution>
                         <id>schemagen</id>
@@ -193,13 +196,13 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <clearOutputDir>false</clearOutputDir>
-                            <!-- NOTE 1: An xsd file will be generated per namespace found.-->
-                            <!-- Sources should therefore be in different namespaces with no code shared between them-->
-                            <!-- NOTE 2: xsd files will be generated in reverse order as the sources specified here-->
+                            <!-- NOTE 1: An xsd file will be generated per namespace that is found in the source code.-->
+                            <!-- Sources should ideally be in different namespaces for different version  with no overlap-->
+                            <!-- NOTE 2: xsd files are generated in reverse order as the sources specified here-->
                             <!-- so the bottom source -> schema1.xsd, second from bottom -> schema2.xsd, etc-->
                             <sources>
-<!--                                <source>../soapservice-api/src/main/java/techbasics/api/soapservice/v2</source>--><!--schema2.xsd-->
-                                <source>../soapservice-api/src/main/java/techbasics/api/soapservice/v1</source><!--schema1.xsd-->
+                                <source>../soapservice-api/src/main/java/techbasics/soapservice/api/v2</source><!--schema2.xsd-->
+                                <source>../soapservice-api/src/main/java/techbasics/soapservice/api/v1</source><!--schema1.xsd-->
                             </sources>
                         </configuration>
                     </execution>
@@ -209,20 +212,18 @@
                 </configuration>
             </plugin>
 
-            <!-- Now we add the xsd files to the classpath -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>target/generated-resources/schemagen/schema1.xsd</additionalClasspathElement>
-<!--                        <additionalClasspathElement>target/generated-resources/schemagen/schema2.xsd</additionalClasspathElement>-->
-                    </additionalClasspathElements>
-                </configuration>
-            </plugin>
-
         </plugins>
+
+        <!-- Now we make the the xsd files available on the classpath -->
+        <resources>
+            <resource>
+                <directory>target/generated-resources/schemagen</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
     </build>
 
 </project>

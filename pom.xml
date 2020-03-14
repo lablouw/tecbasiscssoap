@@ -24,6 +24,8 @@
         <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <org.springframework.version>5.2.3.RELEASE</org.springframework.version>
+        <jaxb2.maven.plugin.version>2.5.0</jaxb2.maven.plugin.version>
+        <dockerfile.maven.plugin.version>1.4.9</dockerfile.maven.plugin.version>
     </properties>
 
     <modules>

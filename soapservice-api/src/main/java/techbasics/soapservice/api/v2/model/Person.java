@@ -1,14 +1,15 @@
-package techbasics.api.soapservice.v1.model;
+package techbasics.soapservice.api.v2.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import techbasics.api.soapservice.v1.service.SoapService;
+import techbasics.soapservice.api.v2.service.SoapService;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -17,17 +18,17 @@ import java.util.List;
 @Data
 
 //For more annotations see https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/example_schemagen_basic.html
-@XmlType(namespace = SoapService.NAMESPACE_URI_V1)
-public class Request1 {
+@XmlType(namespace = SoapService.NAMESPACE_URI_V2)
+public class Person {
 
-	@XmlElement(name = "requestString1")
-	private String requestString1;
+	@XmlElement(name = "name")
+	private String name;
 
-	@XmlElement(name = "requestInt1")
-	private int requestInt1;
+	@XmlElement(name = "dateOfBirth")
+	private Date dateOfBirth;
 
-	@XmlElementWrapper(name = "request1Strings", nillable = true)
-	@XmlElement(name = "request1String")
-	private List<String> request1Strings;
+	@XmlElementWrapper(name = "qualifications", nillable = true)
+	@XmlElement(name = "qualification")
+	private List<String> qualifications;
 
 }
