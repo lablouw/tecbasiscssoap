@@ -78,6 +78,11 @@
             <artifactId>logback-classic</artifactId>
             <version>${ch.qos.logback.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.api.version}</version>
+        </dependency>
 
         <!--Testing-->
         <dependency>
@@ -197,7 +202,7 @@
                         <configuration>
                             <clearOutputDir>false</clearOutputDir>
                             <!-- NOTE 1: An xsd file will be generated per namespace that is found in the source code.-->
-                            <!-- Sources should ideally be in different namespaces for different version  with no overlap-->
+                            <!-- Sources should ideally be in different namespaces for different version and have no overlap-->
                             <!-- NOTE 2: xsd files are generated in reverse order as the sources specified here-->
                             <!-- so the bottom source -> schema1.xsd, second from bottom -> schema2.xsd, etc-->
                             <sources>

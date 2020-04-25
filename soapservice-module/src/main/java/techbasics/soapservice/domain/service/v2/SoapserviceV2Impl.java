@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import techbasics.common.annotaiton.UncaughtExceptionHandler;
 import techbasics.common.manager.PersonManager;
 import techbasics.soapservice.api.v2.model.Person;
 import techbasics.soapservice.api.v2.model.ProcessedPerson;
@@ -15,6 +16,7 @@ import techbasics.soapservice.mapper.ProcessedPersonMapper;
 // No non-domain classes are to be passed into the manager layer, mapping between api and domain classes to take place here.
 
 @Endpoint
+@UncaughtExceptionHandler
 public class SoapserviceV2Impl implements SoapService {
 
 	@Autowired

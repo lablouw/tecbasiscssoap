@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 @Slf4j
 public class SoapBoundaryLoggerAspect {
 	@Around("execution(public * techbasics.soapservice.domain.service.*.*(..))")
-	public Object logConvert(ProceedingJoinPoint pjp) throws Throwable {
+	public Object logSoapApiCall(ProceedingJoinPoint pjp) throws Throwable {
 		StringBuilder argsPattern = new StringBuilder();
 		for (int i = 0; i < pjp.getArgs().length; i++) {
 			argsPattern.append("{},");

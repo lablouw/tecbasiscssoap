@@ -11,6 +11,7 @@ import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
+import techbasics.common.aspect.UncaughtSoapExceptionHandlerAspect;
 import techbasics.common.manager.PersonManager;
 import techbasics.common.manager.PersonManagerImpl;
 import techbasics.soapservice.aspect.SoapBoundaryLoggerAspect;
@@ -22,6 +23,11 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 	@Bean
 	public SoapBoundaryLoggerAspect soapBoundaryLoggerAspect() {
 		return new SoapBoundaryLoggerAspect();
+	}
+
+	@Bean
+	public UncaughtSoapExceptionHandlerAspect uncaughtSoapExceptionHandlerAspect() {
+		return new UncaughtSoapExceptionHandlerAspect();
 	}
 
 	@Bean
