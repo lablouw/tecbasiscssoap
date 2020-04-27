@@ -33,4 +33,9 @@ public class SoapserviceV1Impl implements SoapService {
 
 	}
 
+	@Override
+	public void testException() throws Exception {
+		throw new Exception("Exception from soap method testException");
+	}
+
 }

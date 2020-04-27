@@ -11,4 +11,6 @@ public interface SoapService {
 
     ProcessedPerson processPerson(Person person);
 
+    void testException() throws Exception;
+
 }
