@@ -203,11 +203,10 @@
                             <clearOutputDir>false</clearOutputDir>
                             <!-- NOTE 1: An xsd file will be generated per namespace that is found in the source code.-->
                             <!-- Sources should ideally be in different namespaces for different version and have no overlap-->
-                            <!-- NOTE 2: xsd files are generated in reverse order as the sources specified here-->
-                            <!-- so the bottom source -> schema1.xsd, second from bottom -> schema2.xsd, etc-->
+                            <!-- NOTE 2: For some reason v1 is written to schema2 and vice versa...-->
                             <sources>
-                                <source>../soapservice-api/src/main/java/techbasics/soapservice/api/v2</source><!--schema2.xsd-->
-                                <source>../soapservice-api/src/main/java/techbasics/soapservice/api/v1</source><!--schema1.xsd-->
+                                <source>../soapservice-api/src/main/java/techbasics/soapservice/api/v1</source><!--schema2.xsd-->
+                                <source>../soapservice-api/src/main/java/techbasics/soapservice/api/v2</source><!--schema1.xsd-->
                             </sources>
                         </configuration>
                     </execution>

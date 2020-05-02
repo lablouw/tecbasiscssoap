@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import techbasics.common.annotaiton.UncaughtExceptionHandler;
 import techbasics.common.manager.PersonManager;
 import techbasics.soapservice.api.v1.model.Person;
@@ -22,7 +23,9 @@ public class SoapserviceV1Impl implements SoapService {
 	@Autowired
 	PersonManager personManager;
 
+	@Override
 	@PayloadRoot(namespace = SoapService.NAMESPACE_URI_V1, localPart = "processPerson")
+	@ResponsePayload
 	public ProcessedPerson processPerson(@RequestPayload Person person) {
 
 		techbasics.common.domain.model.Person p = PersonMapper.INSTANCE.mapToDomain(person);
@@ -34,6 +37,7 @@ public class SoapserviceV1Impl implements SoapService {
 	}
 
 	@Override
+	@PayloadRoot(namespace = SoapService.NAMESPACE_URI_V1, localPart = "testException")
 	public void testException() throws Exception {
 		throw new Exception("Exception from soap method testException");
 	}

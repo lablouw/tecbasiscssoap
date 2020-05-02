@@ -48,7 +48,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     /////////////////////////////////////////////
 
     //SoapServiceV1
-    //WSDL: http://localhost:8080/soapService/v1.wsdl
+    //WSDL:http://localhost:8000/soapservice/v1/soapServiceV1.wsdl
     @Bean(name = "soapServiceV1")
     public DefaultWsdl11Definition soapServiceV1Wsdl11Definition(XsdSchema soapServiceV1Schema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
@@ -61,18 +61,12 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema soapServiceV1Schema() {
-        final String classPath = System.getProperty("java.class.path", ".");
-        final String[] classPathElements = classPath.split(System.getProperty("path.separator"));
-        for (final String element : classPathElements) {
-            System.out.println(element);
-        }
-
-        return new SimpleXsdSchema(new ClassPathResource("schema1.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("schema2.xsd"));
     }
 
 
     //SoapServiceV2
-    //WSDL: http://localhost:8080/soapService/v2.wsdl
+    //WSDL: http://localhost:8000/soapservice/v2/soapServiceV2.wsdl
     @Bean(name = "soapServiceV2")
     public DefaultWsdl11Definition soapServiceV2Wsdl11Definition(XsdSchema soapServiceV2Schema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
@@ -85,7 +79,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema soapServiceV2Schema() {
-        return new SimpleXsdSchema(new ClassPathResource("schema2.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("schema1.xsd"));
     }
 
 }
