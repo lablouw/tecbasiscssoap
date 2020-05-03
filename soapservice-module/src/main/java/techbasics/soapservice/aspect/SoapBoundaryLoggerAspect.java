@@ -20,15 +20,10 @@ public class SoapBoundaryLoggerAspect {
 
 		String method = pjp.getSignature().getName();
 
-		log.info("Inbound: [method=" + method + (StringUtils.isEmpty(argsPattern.toString()) ? "]" : ", args=" + argsPattern + "]"), pjp.getArgs());
+		log.info("Inbound: [method={}, args=" + argsPattern + "]", method, pjp.getArgs());
+		Object ret = pjp.proceed();
+		log.info("Outbound: [method={}, response={}]", method, ret);
+		return ret;
 
-		try {
-			Object response = pjp.proceed();
-			log.info("Outbound: [method=" + method + (response == null ? "]" : ", response={}]"), response);
-			return response;
-		} catch (Throwable throwable) {
-			log.error("Error in method " + pjp.getSignature().getName(), throwable);
-			throw throwable;
-		}
 	}
 }
